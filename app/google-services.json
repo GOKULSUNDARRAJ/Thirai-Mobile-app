@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "949581220304",
+    "project_id": "saalaiphoneapp",
+    "storage_bucket": "saalaiphoneapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949581220304:android:94834f15705794ee7991d5",
+        "android_client_info": {
+          "package_name": "com.Saalai.Salaitvapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuTZI-nhc5cd9qERqUQWIirdt6sTJuPlE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

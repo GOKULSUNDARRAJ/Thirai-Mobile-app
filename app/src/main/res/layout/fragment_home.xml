@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bgblack"
+    tools:context=".Fragments.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_user_info"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/applogo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/saalai_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_user_info"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/channel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Channel Name"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/searchicon"
+            android:layout_width="40dp"
+            android:visibility="gone"
+            android:layout_height="35dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="4dp"
+            android:padding="7dp"
+            android:src="@drawable/search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/boardicon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/boardicon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:visibility="gone"
+            android:layout_marginBottom="4dp"
+            android:padding="7dp"
+            android:src="@drawable/boardcast"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Top Navigation Menu -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="12dp">
+
+        <LinearLayout
+            android:id="@+id/top_navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <!-- All Tab -->
+            <TextView
+                android:id="@+id/tab_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="8dp"
+                android:background="@drawable/tab_background_selected"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:fontFamily="@font/circularstdmedium"
+                android:gravity="center" />
+
+            <!-- Music Tab -->
+            <TextView
+                android:id="@+id/tab_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Music"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="8dp"
+                android:background="@drawable/tab_background_unselected"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:fontFamily="@font/circularstdmedium"
+                android:gravity="center"
+                android:layout_marginLeft="12dp" />
+
+            <!-- Devotion Tab -->
+            <TextView
+                android:id="@+id/tab_devotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Devotion"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="8dp"
+                android:background="@drawable/tab_background_unselected"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:fontFamily="@font/circularstdmedium"
+                android:gravity="center"
+                android:layout_marginLeft="12dp" />
+
+
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Fragment Container -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+</LinearLayout>

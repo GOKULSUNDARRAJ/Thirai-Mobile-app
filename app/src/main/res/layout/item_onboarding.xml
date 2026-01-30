@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bgblack"
+    android:padding="32dp">
+
+    <ImageView
+        android:id="@+id/imageOnboarding"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/boardimg2"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_30"
+        android:layout_marginTop="60dp"
+        android:text="Download Content"
+        android:fontFamily="@font/circularstdmedium"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray1"
+        android:fontFamily="@font/circularstdbook"
+        android:textSize="24sp"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:text="Save your favorite shows to watch offline"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"/>
+</LinearLayout>

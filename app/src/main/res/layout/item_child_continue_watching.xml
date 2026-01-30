@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/card_item_width"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/card_item_margin_end">
+
+    <androidx.cardview.widget.CardView
+    android:layout_width="@dimen/card_item_width"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/card_item_margin_end"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Main Image Container -->
+        <RelativeLayout
+            android:id="@+id/imageContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H,16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Poster Image -->
+            <ImageView
+                android:id="@+id/posterImage"
+                android:layout_width="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent"
+                android:src="@drawable/video_placholder"
+                android:contentDescription="Poster" />
+
+            <!-- Progress Bar Container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+               >
+
+                <!-- Progress Bar -->
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:progress="30"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progress_bar_red"
+                    />
+
+            </LinearLayout>
+
+            <!-- Played Time Badge -->
+
+
+            <!-- Resume Icon Overlay -->
+            <FrameLayout
+                android:id="@+id/resumeOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#40000000"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/resumeIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    android:contentDescription="Resume" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/posterTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/circularstdbook"
+        android:gravity="start"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:paddingTop="@dimen/card_text_padding_top"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:text="Title"
+        android:textSize="@dimen/card_text_size"
+        app:layout_constraintTop_toBottomOf="@id/imageContainer" />
+
+    <TextView
+        android:id="@+id/playedTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:paddingVertical="2dp"
+        android:fontFamily="@font/circularstdbook"
+        android:paddingLeft="5dp"
+        android:text="1h 30m"
+
+        android:textSize="10sp"
+        />
+
+</LinearLayout>

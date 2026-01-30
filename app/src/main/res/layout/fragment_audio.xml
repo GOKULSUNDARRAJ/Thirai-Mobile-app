@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bgblack"
+    tools:context=".Fragments.AudioFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgblack"
+        android:paddingLeft="@dimen/top_layout_padding_horizontal"
+        android:paddingTop="@dimen/top_layout_padding_vertical"
+        android:paddingRight="@dimen/top_layout_padding_horizontal"
+        android:paddingBottom="@dimen/top_layout_padding_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_user_info"
+            android:layout_width="@dimen/user_icon_size1"
+            android:layout_height="@dimen/user_icon_size"
+            android:layout_gravity="center"
+            android:src="@drawable/menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/applogo"
+            android:layout_width="@dimen/app_logo_size"
+            android:layout_height="@dimen/app_logo_size"
+            android:layout_marginStart="@dimen/app_logo_margin_start"
+            android:layout_marginTop="@dimen/app_logo_margin_vertical"
+            android:layout_marginBottom="@dimen/app_logo_margin_vertical"
+            android:src="@drawable/saalai_logo"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_user_info"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/channel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Audio"
+            android:textColor="@color/white"
+            android:fontFamily="@font/circularstdbold"
+            android:textSize="@dimen/channel_name_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/searchicon"
+            android:layout_width="@dimen/action_icon_width"
+            android:layout_height="@dimen/action_icon_height"
+            android:layout_marginTop="@dimen/action_icon_margin_vertical"
+            android:layout_marginEnd="@dimen/action_icon_margin_horizontal"
+            android:layout_marginBottom="@dimen/action_icon_margin_vertical"
+            android:padding="@dimen/action_icon_padding"
+            android:src="@drawable/search"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/boardicon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/boardicon"
+            android:layout_width="@dimen/boardcast_icon_size"
+            android:layout_height="@dimen/boardcast_icon_size"
+            android:layout_marginTop="@dimen/boardcast_icon_margin_vertical"
+            android:layout_marginBottom="@dimen/boardcast_icon_margin_vertical"
+            android:padding="@dimen/boardcast_icon_padding"
+            android:src="@drawable/boardcast"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29000002">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/audiocoming" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:fontFamily="@font/circularstdbold"
+            android:text="Available in a future release"
+            android:textColor="@color/white"
+            android:textSize="25dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/circularstdmedium"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="This feature is currently being developed and will be available soon."
+            android:textColor="@color/gray"
+            android:textSize="18dp"></TextView>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    android:background="@color/bgblack"-->
+<!--    android:padding="10dp"-->
+<!--    tools:context=".Fragments.AudioFragment">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        >-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            >-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/back"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:contentDescription="Play/Pause"-->
+<!--                android:padding="10dp"-->
+<!--                android:src="@drawable/baseline_arrow_back_24"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="250dp"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                app:cardCornerRadius="16dp"-->
+<!--                app:cardElevation="8dp"-->
+<!--                app:cardBackgroundColor="@android:color/white"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--               android:layout_marginTop="@dimen/dp_30"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imgAlbumArt"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/video_placholder" />-->
+<!--            </androidx.cardview.widget.CardView>-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linearLayout2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:orientation="vertical"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"-->
+<!--            tools:layout_editor_absoluteX="16dp">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvFullPlayerSongName"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="start"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:clickable="true"-->
+<!--                android:ellipsize="end"-->
+<!--                android:focusable="true"-->
+<!--                android:singleLine="true"-->
+<!--                android:text="Song Name"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvFullPlayerSongArtist"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="start"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:ellipsize="end"-->
+<!--                android:singleLine="true"-->
+<!--                android:text="Artist Name"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="16sp" />-->
+<!--        </LinearLayout>-->
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/linearLayout3"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+
+<!--            android:gravity="center"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            tools:layout_editor_absoluteX="16dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/btndownload"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:background="@drawable/round_bg"-->
+<!--                    android:contentDescription="Next"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:src="@drawable/baseline_download_24"-->
+<!--                    android:tint="@color/white"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/btnshare"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/btnplaylist"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:background="@drawable/round_bg"-->
+<!--                    android:contentDescription="Previous"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:src="@drawable/baseline_add_24"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/btnshare"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:background="@drawable/round_bg"-->
+<!--                    android:contentDescription="Next"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:src="@drawable/share"-->
+<!--                    android:tint="@color/white"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/btnplaylist"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+<!--            </LinearLayout>-->
+
+
+<!--            <ImageView-->
+<!--                android:id="@+id/btnFullPlayPause"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="@drawable/yellowround"-->
+<!--                android:contentDescription="Play/Pause"-->
+<!--                android:padding="10dp"-->
+<!--                android:src="@drawable/play_player"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/audioRecyclerView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginBottom="65dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </LinearLayout>-->
+
+<!--</androidx.core.widget.NestedScrollView>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

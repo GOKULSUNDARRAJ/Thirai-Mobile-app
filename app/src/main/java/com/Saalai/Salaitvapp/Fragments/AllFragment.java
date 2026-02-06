@@ -467,13 +467,11 @@ public class AllFragment extends Fragment implements TabNavigationListener {
                                     !item.getPlayedTime().equals("00:00:00") &&
                                     !item.getPlayedTime().equals("0:00:00")) {
 
-                                // Determine type based on channelId
-                                String type = determineItemType(item.getChannelId(), item.getChannelName());
 
                                 continueWatching.add(new ChildItemAllFragment(
                                         item.getChannelLogo(),
                                         item.getChannelName(),
-                                        type,
+                                        "Movies",
                                         "Continue Watching",
                                         item.getChannelURL(),
                                         item.getChannelId(),
@@ -637,47 +635,7 @@ public class AllFragment extends Fragment implements TabNavigationListener {
         });
     }
 
-    // Helper method to determine item type for continue watching
-    private String determineItemType(int channelId, String channelName) {
-        // Based on your data structure:
-        // Movies typically have channelIds around 1800-1900
-        // TV Shows have channelIds around 100-300
-        // Channels have channelIds < 100
-        // Radios have channelIds around 40-70
 
-        if (channelId >= 1800 && channelId < 2000) {
-            return "Movies";
-        } else if (channelId >= 100 && channelId < 1000) {
-            return "TVShows";
-        } else if (channelId >= 40 && channelId < 100) {
-            return "Radio";
-        } else if (channelId < 300) {
-            return "Channels";
-        }
-
-        // Fallback based on name
-        if (channelName != null) {
-            String lowerName = channelName.toLowerCase();
-            if (lowerName.contains("movie") ||
-                    lowerName.contains("cinema") ||
-                    lowerName.contains("film") ||
-                    lowerName.endsWith("movie")) {
-                return "Movies";
-            } else if (lowerName.contains("tv") ||
-                    lowerName.contains("show") ||
-                    lowerName.contains("series") ||
-                    lowerName.contains("episode") ||
-                    lowerName.endsWith("tv")) {
-                return "TVShows";
-            } else if (lowerName.contains("radio") ||
-                    lowerName.contains("fm") ||
-                    lowerName.endsWith("fm")) {
-                return "Radio";
-            }
-        }
-
-        return "Movies"; // Default fallback
-    }
 
 
 

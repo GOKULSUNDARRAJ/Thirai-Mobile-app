@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -275,59 +276,190 @@ public class ChildAdapterAllFragment extends RecyclerView.Adapter<RecyclerView.V
         String type = item.getType();
         String playedTime = item.getPlayedDuration();
 
-        Log.d("ContinueWatching", "Clicked item: " + item.getName() + ", Type: " + type + ", Time: " + playedTime);
-        Log.d("ContinueWatching", "Calculated Progress: " + calculateProgressPercentage(type, playedTime) + "%");
+        // Comprehensive initial logging
+        Log.d("ContinueWatching", "========== CONTINUE WATCHING CLICKED ==========");
+        Log.d("ContinueWatching", "Item Name: " + item.getName());
+        Log.d("ContinueWatching", "Item Type: " + type);
+        Log.d("ContinueWatching", "Played Time: " + playedTime);
+        Log.d("ContinueWatching", "Channel ID: " + item.getChannelId());
+        Log.d("ContinueWatching", "Item URL: " + item.getUrl());
+        Log.d("ContinueWatching", "Progress Percentage: " + calculateProgressPercentage(type, playedTime) + "%");
+        Log.d("ContinueWatching", "Activity: " + activity.getClass().getSimpleName());
 
-        switch (type) {
-            case "Movies":
-                // Navigate to movie player with resume position
-                MovieVideoPlayerFragment movieFragment = MovieVideoPlayerFragment.newInstance(
-                        String.valueOf(item.getChannelId()),
-                        playedTime
-                );
-                FragmentTransaction movieTransaction = activity.getSupportFragmentManager().beginTransaction();
-                movieTransaction.replace(R.id.fragment_container, movieFragment);
-                movieTransaction.addToBackStack("movie_player_fragment");
-                movieTransaction.commit();
+        // Validate input
+        if (type == null || type.isEmpty()) {
+            Log.e("ContinueWatching", "ERROR: Item type is null or empty!");
+            Toast.makeText(activity, "Cannot determine content type", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (playedTime == null) {
+            Log.w("ContinueWatching", "WARNING: Played time is null, will start from beginning");
+            playedTime = "0";
+        }
+
+        switch (type.toLowerCase()) {
+            case "movies":
+                Log.d("ContinueWatching", "Processing MOVIE item...");
+                Log.d("ContinueWatching", "Creating MovieVideoPlayerFragment with:");
+                Log.d("ContinueWatching", "- Channel ID: " + item.getChannelId());
+                Log.d("ContinueWatching", "- Resume Position: " + playedTime);
+
+                try {
+                    MovieVideoPlayerFragment movieFragment = MovieVideoPlayerFragment.newInstance(
+                            String.valueOf(item.getChannelId()),
+                            playedTime
+                    );
+
+                    Log.d("ContinueWatching", "Movie fragment created successfully");
+
+                    FragmentTransaction movieTransaction = activity.getSupportFragmentManager().beginTransaction();
+                    Log.d("ContinueWatching", "Starting fragment transaction for movie");
+
+                    movieTransaction.replace(R.id.fragment_container, movieFragment);
+                    movieTransaction.addToBackStack("movie_player_fragment");
+                    movieTransaction.commit();
+
+                    Log.d("ContinueWatching", "Movie fragment transaction committed");
+                    Log.d("ContinueWatching", "Back stack count: " + activity.getSupportFragmentManager().getBackStackEntryCount());
+
+                } catch (Exception e) {
+                    Log.e("ContinueWatching", "ERROR creating movie fragment: " + e.getMessage(), e);
+                    Toast.makeText(activity, "Failed to open movie", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
-            case "TVShows":
-                // Navigate to TV show episode with resume position
-                TvShowEpisodeFragment tvShowFragment = TvShowEpisodeFragment.newInstance(
-                        String.valueOf(item.getChannelId())
-                );
-                FragmentTransaction tvTransaction = activity.getSupportFragmentManager().beginTransaction();
-                tvTransaction.add(R.id.fragment_container, tvShowFragment);
-                tvTransaction.addToBackStack("tv_show_fragment");
-                tvTransaction.commit();
+            case "tvshows":
+            case "tv shows":
+                Log.d("ContinueWatching", "Processing TV SHOW item...");
+                Log.d("ContinueWatching", "Creating TvShowEpisodeFragment with:");
+                Log.d("ContinueWatching", "- Channel ID: " + item.getChannelId());
+
+                try {
+                    TvShowEpisodeFragment tvShowFragment = TvShowEpisodeFragment.newInstance(
+                            String.valueOf(item.getChannelId())
+                    );
+
+                    Log.d("ContinueWatching", "TV Show fragment created successfully");
+
+                    FragmentTransaction tvTransaction = activity.getSupportFragmentManager().beginTransaction();
+                    Log.d("ContinueWatching", "Starting fragment transaction for TV show");
+
+                    tvTransaction.add(R.id.fragment_container, tvShowFragment);
+                    tvTransaction.addToBackStack("tv_show_fragment");
+                    tvTransaction.commit();
+
+                    Log.d("ContinueWatching", "TV Show fragment transaction committed");
+                    Log.d("ContinueWatching", "Back stack count: " + activity.getSupportFragmentManager().getBackStackEntryCount());
+
+                } catch (Exception e) {
+                    Log.e("ContinueWatching", "ERROR creating TV show fragment: " + e.getMessage(), e);
+                    Toast.makeText(activity, "Failed to open TV show", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
-            case "Channels":
-                // For channels, you might want to store the last position
-                VideoPlayerFragment videoPlayerFragment = VideoPlayerFragment.newInstance(
-                        item.getUrl(),
-                        item.getName()
-                );
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.fragment_container, videoPlayerFragment);
-                transaction.addToBackStack("video_player");
-                transaction.commit();
+            case "channels":
+            case "channel":
+                Log.d("ContinueWatching", "Processing CHANNEL/LIVE TV item...");
+                Log.d("ContinueWatching", "Creating VideoPlayerFragment with:");
+                Log.d("ContinueWatching", "- URL: " + (item.getUrl() != null ? "Provided" : "NULL"));
+                Log.d("ContinueWatching", "- Name: " + item.getName());
+
+                if (item.getUrl() == null || item.getUrl().isEmpty()) {
+                    Log.e("ContinueWatching", "ERROR: Channel URL is null or empty!");
+                    Toast.makeText(activity, "Channel URL not available", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                try {
+                    VideoPlayerFragment videoPlayerFragment = VideoPlayerFragment.newInstance(
+                            item.getUrl(),
+                            item.getName()
+                    );
+
+                    Log.d("ContinueWatching", "Video player fragment created successfully");
+
+                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                    Log.d("ContinueWatching", "Starting fragment transaction for channel");
+
+                    transaction.add(R.id.fragment_container, videoPlayerFragment);
+                    transaction.addToBackStack("video_player");
+                    transaction.commit();
+
+                    Log.d("ContinueWatching", "Video player fragment transaction committed");
+                    Log.d("ContinueWatching", "Back stack count: " + activity.getSupportFragmentManager().getBackStackEntryCount());
+
+                } catch (Exception e) {
+                    Log.e("ContinueWatching", "ERROR creating video player fragment: " + e.getMessage(), e);
+                    Toast.makeText(activity, "Failed to open channel", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case "catchup":
+            case "catch up":
+                Log.d("ContinueWatching", "Processing CATCH UP item...");
+                // Add catch up specific logic here
+                Log.d("ContinueWatching", "Catch up functionality not implemented yet");
+                Toast.makeText(activity, "Catch up feature coming soon", Toast.LENGTH_SHORT).show();
                 break;
 
             default:
-                // Fallback to regular navigation
-                if ("Movies".equalsIgnoreCase(type)) {
-                    MovieVideoPlayerFragment fallbackMovieFragment = MovieVideoPlayerFragment.newInstance(
-                            String.valueOf(item.getChannelId()),
-                            playedTime);
-                    FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.fragment_container, fallbackMovieFragment);
-                    ft.addToBackStack("movie_player_fragment");
-                    ft.commit();
+                Log.w("ContinueWatching", "WARNING: Unknown type '" + type + "', attempting fallback...");
+
+                // Try to infer from name or other properties
+                if (item.getName() != null) {
+                    Log.d("ContinueWatching", "Item name contains: " + item.getName());
+
+                    // Check if name contains hints about type
+                    String nameLower = item.getName().toLowerCase();
+                    if (nameLower.contains("movie") || nameLower.contains("film")) {
+                        Log.d("ContinueWatching", "Inferred type as MOVIE from name");
+
+                        try {
+                            MovieVideoPlayerFragment fallbackMovieFragment = MovieVideoPlayerFragment.newInstance(
+                                    String.valueOf(item.getChannelId()),
+                                    playedTime);
+
+                            FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+                            ft.replace(R.id.fragment_container, fallbackMovieFragment);
+                            ft.addToBackStack("movie_player_fragment");
+                            ft.commit();
+
+                            Log.d("ContinueWatching", "Fallback movie fragment opened");
+                        } catch (Exception e) {
+                            Log.e("ContinueWatching", "ERROR in fallback movie: " + e.getMessage(), e);
+                        }
+                    } else if (nameLower.contains("tv") || nameLower.contains("episode") || nameLower.contains("season")) {
+                        Log.d("ContinueWatching", "Inferred type as TV SHOW from name");
+
+                        try {
+                            TvShowEpisodeFragment fallbackTvFragment = TvShowEpisodeFragment.newInstance(
+                                    String.valueOf(item.getChannelId()));
+
+                            FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+                            ft.add(R.id.fragment_container, fallbackTvFragment);
+                            ft.addToBackStack("tv_show_fragment");
+                            ft.commit();
+
+                            Log.d("ContinueWatching", "Fallback TV show fragment opened");
+                        } catch (Exception e) {
+                            Log.e("ContinueWatching", "ERROR in fallback TV show: " + e.getMessage(), e);
+                        }
+                    } else {
+                        Log.e("ContinueWatching", "ERROR: Cannot determine content type for: " + item.getName());
+                        Toast.makeText(activity, "Cannot play this content", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.e("ContinueWatching", "ERROR: Item name is null, cannot determine type");
+                    Toast.makeText(activity, "Content information missing", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
+
+        Log.d("ContinueWatching", "========== CONTINUE WATCHING COMPLETED ==========");
     }
+
+
 
     private void showAccountBlockedAlert(AppCompatActivity activity) {
         if (context == null) return;
